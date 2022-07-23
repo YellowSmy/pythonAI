@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="{{url_for('file_process')}}", method="post"
+            enctype="multipart/form-data">
+            <input type="file", name="file"/>
+            <p>칩 수율<input type="number", max="100" name="chipLimit"/> %</p>
+            <p>수율 한계<input type="number", max="100" name="yieldLimit"/> %</p>
+            <input type="submit">
+        </form>
+    </body>
+</html>
