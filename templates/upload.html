@@ -3,12 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/css/uploadstyle.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/uploadstyle.css')}}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
     <body>
         <h1>반가워요</h1>
+        <br>
         <div>
             <form action="{{url_for('file_process')}}", method="post", enctype="multipart/form-data" id="form">
                     <input type="file", name="file", id="file",  style="display: none;" required></input>
