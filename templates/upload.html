@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" href="../static/css/uploadstyle.css">
+
+    </head>
+
+    <body>
+        <h1>환율 예측 프로그램</h1>
+        <br>
+        <form action="{{url_for('file_process')}}", method="post" enctype="multipart/form-data" id="form">
+            <div class="selector">
+                <span>통화 정보</span><span>시세</span>
+                <br>
+            </div>
+            <div class="selector">
+                <select name="selectRate" size="1" required> 
+                    <option value=""> 통화선택 </option>
+                    <option value="USD">달러/원</option>
+                    <option value="JPY">엔화/원</option>
+                    <option value="RUB">루블/원</option>
+                </select>
+
+                <select name="selectTime" size="1" required> 
+                    <option value=""> 시세선택 </option>
+                    <option value="Close">종가</option>
+                    <option value="Open">시가</option>
+                    <option value="High">고가</option>
+                    <option value="Low">저가</option>
+                </select>
+            </div>
+            <br><br>
+            <input type="text" name="period" id="period"/>
+            <br><br>
+            <input type="number", min="0" ,max="100" name="trust" placeholder="최저 AI 신뢰도(%)" required>
+            <br><br>
+            <input type="submit" id="submit">
+        </form>
+        <br>
+        <button onclick="modalOpen()">도움말</button>
+        
+        <div id="load">
+            <img src="../static/img/UI/spinner.gif" alt="loading">
+            <p>tip: 1분 이상의 시간이 소모됩니다...</p>
+        </div>
+        <div id="help">
+            <div>
+                <h2>도움말</h2>
+                어쩌구 저쩌구
+                어쩌구 저쩌구
+                <br>
+                <button onclick="modalClose()">닫기</button>
+            </div>
+        </div>
+
+        <script>
+            $(window).on('load', 
+                function() {
+                    $("#load").hide();
+                    $("#help").hide();
+            });
+            $('#form').submit(function loading() {     
+                    $('#load').show();
+            });
+
+            function modalOpen(){
+                $("#help").show();
+            }
+            function modalClose(){
+                $("#help").hide();
+            }
+        </script>
+
+        <script>
+            $(function(){
+                $('#period').daterangepicker({
+                    drops: 'up',
+                    opens: 'center',
+                    showDropdowns: true,
+                    minDate: '2003-12-01',
+                    maxDate: new Date(),
+
+                    ranges: {
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                        'Year': [moment().subtract(12, 'month'), moment()]
+                    },
+
+                    // design
+                    "locale": {
+                        "format": "YYYY-MM-DD",
+                        "separator": " ~ ",
+                        "applyLabel": "확인",
+                        "cancelLabel": "취소",
+                        "fromLabel": "From",
+                        "toLabel": "To",
+                        "customRangeLabel": "Custom",
+                        "weekLabel": "W",
+                        "daysOfWeek": ["월", "화", "수", "목", "금", "토", "일"],
+                        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                        "firstDay": 1
+                    },
+                    "startDate": '2003-12-01',
+                    "endDate": new Date(),
+                    
+                });
+            });
+            
+        </script>
+    </body>
+</html>

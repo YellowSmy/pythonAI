@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>
+
+            
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/css/completestyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>결과</h1>
+        <img src="{{url_for('static', filename=image_file)}}">
+        <br><br>
+        <h1 id="result">{{indicate}}</h1>
+        <p>정확도: {{confidence}}</p>
+        <p>{{reason}}</p>
+    </body>
+    
+</html>
