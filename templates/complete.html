@@ -1,0 +1,27 @@
+<html>
+    COMPLETE!
+    <br>
+    <br>
+    <br>
+    <h1>적기가 {{moveResult[0]}} 방향으로 {{vResult[0]}} 할 것으로 예상됨.</h1>
+    <br>
+    <br>
+    <img src="{{url_for('static', filename=image_file)}}">
+    <h2>{{moveResult[0]}}</h2>
+    <br>
+    <p>
+        {{moveResult[1]}}
+        <br>
+        {{moveResult[2]}}
+    </p>
+    <br>
+    <br>
+    <img src="{{url_for('static', filename=image_file2)}}">
+    <h2>{{vResult[0]}}</h2>
+    <br>
+    <p>
+        {{vResult[1]}}
+        <br>
+        {{vResult[2]}}
+    </p>
+</html>
