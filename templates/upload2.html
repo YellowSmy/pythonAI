@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html style="text-align: center;">
+<!--     """
+    약 code 기준
+    선택X(전체) - 공백
+    shape(약 모양): 1-10(원형, 타원, 반원, 삼각형, 사각, 마름모, 장방, 오각, 육각, 팔각), 99(기타), 전체- 선택 X
+    color: 코드가 길다.. 시키자
+    dosageForm(제형): 1-3 (정제류, 경질캡슐, 연질캡슐)
+    divisionLine(분할선): 없음(8), -형(2), +형(1), 기타(4) 
+""" -->
+    <head>
+        <link rel="stylesheet" href="../static/css/uploadstyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form action="{{url_for('file_processII')}}", method="post"
+            enctype="multipart/form-data" id="form">
+            <p>약모양</p>
+            <li>
+                <input type="radio" name="shape" id="round" value="" checked>전체
+                <input type="radio" name="shape" id="round" value="1">원형
+                <input type="radio" name="shape" id="round" value="2">타원
+                <input type="radio" name="shape" id="round" value="3">반원
+                <input type="radio" name="shape" id="round" value="4">삼각
+                <input type="radio" name="shape" id="round" value="사각형">사각
+                <input type="radio" name="shape" id="round" value="마름모">마름모
+                <input type="radio" name="shape" id="round" value="장방">장방
+                <input type="radio" name="shape" id="round" value="오각형">오각
+                <input type="radio" name="shape" id="round" value="육각">육각
+                <input type="radio" name="shape" id="round" value="팔각">팔각
+                <input type="radio" name="shape" id="round" value="">기타
+            </li>
+
+            <p>약제형</p>
+            <div>
+                <input type="radio" name="dosageForm" id="select(결정하기)" value="" checked> 전체
+                <input type="radio" name="dosageForm" id="select(결정하기)" value="정제">정제
+                <input type="radio" name="dosageForm" id="select(결정하기)" value="경질">경질캡슐
+                <input type="radio" name="dosageForm" id="select(결정하기)" value="연질">연질캡슐
+  
+            </div>
+
+            <p>색상</p>
+            <select name="color" size="1" id="color"> 
+                <option value="">전체</option>
+                <option value="분홍">분홍</option>
+                <option value="주황">주황</option>
+                <option value="노랑">노랑</option>
+                <option value="흰색">흰색</option>
+                <option value="">기타</option>
+            </select>
+            <br> <br>
+            <p>분할선
+                <input type="radio" name="divisionLine" value="" checked> 전체
+                <input type="radio" name="divisionLine" value="8"> 없음
+                <input type="radio" name="divisionLine" value="2"> -형
+                <input type="radio" name="divisionLine" value="1"> +형
+                <input type="radio" name="divisionLine" value="4"> 기타
+            </p>
+            <input type="text" name="text" placeholder="약 글씨 입력...">
+            <br><br>
+            <input type="number", min="0" max="100" name="trust" placeholder="AI 신뢰 한계도" required/>
+            <br><br>
+            <input type="submit" id="submit">
+            <br>
+        </form>
+        <br>
+        <button onclick="modalOpen()">도움말</button>
+        <br><br>
+        <a href="{{url_for('upload_main')}}"> 성분 명을 아시나요? </a>
+        <br>
+        <div id="load">
+            <img src="../static/img/UI/spinner.gif" alt="loading">
+            <p>tip: 1분 이상의 시간이 소모됩니다...</p>
+        </div>
+        <div id="help">
+            <div>
+                <h2>도움말</h2>
+                어쩌구 저쩌구
+                어쩌구 저쩌구
+                <br>
+                <button onclick="modalClose()">닫기</button>
+            </div>
+        </div>
+        <br>
+
+        <script>
+            $(window).on('load', 
+                function() {
+                    $("#load").hide();
+                    $("#help").hide();
+            });
+            $('#form').submit(function loading() {     
+                    $('#load').show();
+            });
+
+            $("#file").on('change',
+                function(){
+                    var fileName = $("#file").val();
+                    if(fileName == '') {
+                        $("#fileText").text();
+                    }
+                    else {
+                        $("#fileText").text(fileName);
+                    }
+            });
+
+            function modalOpen(){
+                $("#help").show();
+            }
+            function modalClose(){
+                $("#help").hide();
+            }
+        </script>
+
+    </body>
+    
+</html>

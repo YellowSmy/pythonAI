@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>   
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/css/completestyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <br>
+        <h1>결과</h1>
+        <br>
+        {% for countI in range(3) %}
+            <div>
+                <iframe src="{{url[countI]}}" width="1100px" height="500px"></iframe>
+                <br><br>
+                <h1 id="result">{{aiResult[countI][0]}}</h1>
+                <p>정확도: {{aiResult[countI][1]}}</p>
+                <p>{{aiResult[countI][2]}}</p>
+            </div>
+            
+        {% endfor %}
+        <br>
+        <br>
+    </body>
+    
+</html>

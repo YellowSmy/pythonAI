@@ -1,0 +1,159 @@
+/* 폰트 */
+@font-face {
+    font-family: 'tway';
+    src: url('../fonts/tway_fly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[type=radio]{
+    content: url(../img/UI/images.jpg);
+    width: 50px;
+    height: 50px;
+}
+
+[type=radio]:checked{
+    outline: 2px solid darkgrey;
+  }
+   
+html {
+    position: relative;
+    font-family: 'tway', sans-serif;
+    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+
+}
+
+li {
+    margin: 0 auto;
+    list-style: none;
+    width: 500px;
+    height: 100px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+li > input {
+    margin-left: 5px;
+    margin-top: 10px; /*알아서 조절할것*/
+}
+
+body {
+    position: relative;
+    margin-top: 100px;
+    vertical-align: middle;
+
+    -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+#load {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.8;
+    background: white;
+    z-index: 99;
+    text-align: center;
+}
+
+#load > img {
+    position: relative;
+    top: 50%;
+    z-index: 100;
+}
+
+#load > p {
+    position: relative;
+    top: 55%;
+    z-index: 100;
+}
+
+#help {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 1;
+    background: gray;
+    z-index: 99;
+    text-align: center;
+}
+
+#help > div {
+    position: relative;
+    display: inline-block;
+    top: 90px;
+    height: 70%;
+    width: 50%;
+    background-color: white;
+    border-radius: 5%;
+}
+
+#help > div > button {
+    position: relative;
+    top: 75%;
+}
+
+input{
+    margin: 0 auto;
+    font-family:'tway', sans-serif;  
+    width: 300px;
+    height: 25px;
+}
+
+select {
+    content: url(../img/UI/images.jpg);
+    width: 50px;
+    height: 50px;
+    font-family: 'tway';
+    width: 100px;
+    height: 25px;
+}
+
+#fileText:hover {
+    color: gray;
+}
+
+button {
+    font-family:'tway', sans-serif;
+    width: 70px;
+    height: 30px;
+}
+
+#submit {
+    width: 70px;
+    height: 30px;
+}
+
+button:hover, #submit:hover {
+    background-color: gainsboro;
+    
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    border-radius: 5%;
+}
+
+a:hover {
+    background-color: gainsboro;
+}
