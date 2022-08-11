@@ -29,6 +29,9 @@ def file_process():
         chipLimit = float(request.form['chipLimit'])
         yieldLimit = float(request.form['yieldLimit'])
 
+        #ai trust upload
+        trust = float(request.form['trust'])
+
         #before indicate processing <- process.py
         result = _pandas_processing(saveFileName, chipLimit, yieldLimit);
 
@@ -39,7 +42,7 @@ def file_process():
             return render_template('complete.html', image_file = 'img/result/PF.png', image_file2='img/result/Yield.png', result=result, reason=reason);
         else:
             #2nd indicate: ai processing으로 증감 판단 <- aiprocess.py
-            indicate = _ai_process();
+            indicate = _ai_process(trust);
             result = indicate[0]; confidence = indicate[1]; reason = indicate[2];
             return render_template('complete.html', image_file = 'img/result/PF.png', image_file2='img/result/Yield.png', result=result, confidence = confidence, reason = reason);
     

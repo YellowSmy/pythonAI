@@ -1,15 +1,32 @@
-<html>
-    COMPLETE!
-    <br>
-    <img src="{{url_for('static', filename=image_file)}}">
-    <br>
-    <img src="{{url_for('static', filename = image_file2)}}">
-    <br>
-    <h1>{{result}}</h1>
-    <br>
-    <p>
-        {{confidence}}
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>
+
+            
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/css/completestyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
         <br>
-        {{reason}}
-    </p>
+        <h1>결과</h1>
+        <br>
+        <div id="graph">
+            <div class="graph"><img src="{{url_for('static', filename=image_file)}}" alt=""></div>
+            <div class="graph"><img src="{{url_for('static', filename = image_file2)}}" alt=""></div>
+        </div>
+        <br>
+        <div id="explain">
+            <div class="graph">양산 테스트 결과</div>
+            <div class="graph">수율<div>
+        </div>
+        </div>
+        <br>
+        <br>
+        <h1 id="result">{{result}}</h1>
+        <p>정확도: {{confidence}}</p>
+        <p>{{reason}}</p>
+        
+    </body>
 </html>

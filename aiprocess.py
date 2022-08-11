@@ -6,7 +6,7 @@ indicateResult = ['A', 'B', 'C'];
 
 
 
-def _ai_process():
+def _ai_process(trust):
     # this will train your model and might take a little while
     myproject = MLforKidsImageProject(key)
     myproject.train_model()
@@ -23,10 +23,10 @@ def _ai_process():
     #증가 but 정확도 60% 미만 = 위험
     #감소 = 양산 불가
 
-    if(label == "increase" and confidence >= 60):
+    if(label == "increase" and confidence >= trust):
         indicate = '양산 가능'
         reason = '수율이 증가하고 있습니다.'
-    elif(label == 'increase' and confidence < 60):
+    elif(label == 'increase' and confidence < trust):
         indicate = '위험'
         reason = '수율이 증가하나 AI판단의 정확도가 60% 미만입니다.'
     else:
