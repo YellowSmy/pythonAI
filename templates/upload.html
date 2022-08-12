@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <form action="{{url_for('file_process')}}", method="post"
-            enctype="multipart/form-data">
-            <input type="file", name="file"/>
-            <p>최저 AI 신뢰도<input type="number", max="100" name="trust"/> %</p>
-            <input type="submit">
-        </form>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/uploadstyle.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+
+    <body style="text-align: center;">
+        <div>
+            <form action="{{url_for('file_process')}}" method="post", id="form" enctype="multipart/form-data">
+                <input type="file", name="file", id="file", style="display: none;" required></input>
+                <label for="file" id="fileText" aria-required="true">파일을 업로드해 주세요!!</label><br><br>
+                <input type="number", min="0" max="100", name="trust" placeholder="AI 신뢰 한계치(%)" required><br><br><br>
+                <input type="submit" id="submit">
+            </form>
+        </div>
+        
+        <div id="load">
+            <img src="../static/img/UI/spinner.gif" alt="loading">
+            <p>tip: 1분 이상의 시간이 소모됩니다...</p>
+        </div>
+        <div id="help">
+            <div>
+                <h2>도움말</h2>
+                어쩌구 저쩌구
+                어쩌구 저쩌구
+                <br>
+                <button onclick="modalClose()">닫기</button>
+            </div>
+        </div>
+        <br>
+        <button onclick="modalOpen()">도움말</button>
+
+        <script>
+            $(window).on('load', 
+                function() {
+                    $("#load").hide();
+                    $("#help").hide();
+            });
+            $('#form').submit(function loading() {     
+                    $('#load').show();
+            });
+
+            $("#file").on('change',
+                function(){
+                    var fileName = $("#file").val();
+                    if(fileName == '') {
+                        $("#fileText").text();
+                    }
+                    else {
+                        $("#fileText").text(fileName);
+                    }
+            });
+
+            function modalOpen(){
+                $("#help").show();
+            }
+            function modalClose(){
+                $("#help").hide();
+            }
+        </script>
     </body>
 </html>

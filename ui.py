@@ -25,7 +25,7 @@ def file_process():
         saveFileName = saveFileName.replace(' ', '_')
         f.save('./static/excel/' + secure_filename(saveFileName))
 
-        trust = request.form['trust']
+        trust = float(request.form['trust'])
     
         ##processing part
         _pandas_processing(saveFileName) #pandas

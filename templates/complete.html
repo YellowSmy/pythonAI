@@ -1,27 +1,42 @@
-<html>
-    COMPLETE!
-    <br>
-    <br>
-    <br>
-    <h1>적기가 {{moveResult[0]}} 방향으로 {{vResult[0]}} 할 것으로 예상됨.</h1>
-    <br>
-    <br>
-    <img src="{{url_for('static', filename=image_file)}}">
-    <h2>{{moveResult[0]}}</h2>
-    <br>
-    <p>
-        {{moveResult[1]}}
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>
+
+            
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/completestyle.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
         <br>
-        {{moveResult[2]}}
-    </p>
-    <br>
-    <br>
-    <img src="{{url_for('static', filename=image_file2)}}">
-    <h2>{{vResult[0]}}</h2>
-    <br>
-    <p>
-        {{vResult[1]}}
+        <h1>결과</h1>
+        <h1 id="result">적기가 {{moveResult[0]}} 방향으로 {{vResult[0]}} 할 것으로 예상됨.</h1>
+        <br><br>
+        <h1>세부사항</h1>
+        <div id="graph">
+            <div class="graph"><img src="{{url_for('static', filename=image_file)}}" alt=""></div>
+            <div class="graph"><img src="{{url_for('static', filename = image_file2)}}" alt=""></div>
+        </div>
         <br>
-        {{vResult[2]}}
-    </p>
+        <div id="explain">
+            <div class="graph">
+                <h2>{{moveResult[0]}}</h2>
+                <span>{{moveResult[1]}}</span>
+                <br>
+                <span>{{moveResult[2]}}</span>
+            </div>
+
+            <div class="graph">
+                <h2>{{vResult[0]}}</h2>
+                <span>{{vResult[1]}}</span>
+                <br>
+                <span>{{vResult[2]}}</span>
+            </div>
+        </div>
+
+        </div>
+        <br>
+    
+    </body>
 </html>
