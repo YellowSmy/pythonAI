@@ -81,6 +81,7 @@ def _pandas_exchange_processing(selectRate, start_date, end_date, selectTime):
 
     ##save
     plt.savefig('./static/img/result/exchange.png');
+    plt.savefig('./static/img/result/exchange.jpg'); #for tensorflow
 
 """ 
 #console

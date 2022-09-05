@@ -34,6 +34,7 @@ def file_process():
         indicate = result[0]
         confidence = result[1]
         reason = result[2]
+
         return render_template('complete.html', image_file='img/result/exchange.png', indicate=indicate, confidence=confidence, reason=reason)
         
         

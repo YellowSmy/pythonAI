@@ -1,44 +1,77 @@
-from mlforkids import MLforKidsImageProject
+import tensorflow.keras
+from PIL import Image, ImageOps
+import numpy as np
 
-# treat this key like a password and keep it secret!
-key = "3e7871f0-09a8-11ed-a0b4-7b73eb924b025c485045-7cbe-4e1d-9476-dd2a6b91d346"
 indicateResult = ['A', 'B', 'C'];
 
-
-
 def _ai_process(trust):
-    # this will train your model and might take a little while
-    myproject = MLforKidsImageProject(key)
-    myproject.train_model()
+    # Disable scientific notation for clarity
+    np.set_printoptions(suppress=True)
 
-    # CHANGE THIS to the image file you want to recognize
-    demo = myproject.prediction("static/img/result/exchange.png")
+    # Load the model
+    model = tensorflow.keras.models.load_model('static/model/keras_model.h5')
 
-    label = demo["class_name"]
-    confidence = demo["confidence"]
+    # Create the array of the right shape to feed into the keras model
+    # The 'length' or number of images you can put into the array is
+    # determined by the first position in the shape tuple, in this case 1.
+    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-    #indicate
-    #상수함수 = 유지
-    #증가 & 정확도 60% = 상승
-    #증가 but 신뢰도 설정값 미만 = 
-    #감소 = 감소
+    # Replace this with the path to your image
+    image = Image.open('static/img/result/exchange.jpg')
 
-    if(label == "increase" and confidence >= trust):
+    #resize the image to a 224x224 with the same strategy as in TM2:
+    #resizing the image to be at least 224x224 and then cropping from the center
+    size = (224, 224)
+    image = ImageOps.fit(image, size, Image.ANTIALIAS)
+
+    #turn the image into a numpy array
+    image_array = np.asarray(image)
+
+    # Normalize the image
+    normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
+
+    # Load the image into the array
+    data[0] = normalized_image_array
+
+    # run the inference
+    prediction = model.predict(data)
+    if(prediction[0,0] > prediction[0,1] or prediction[0,2]):
+        confidence = round(prediction[0,0]*100)
+        
         indicate = '상승'
-        reason = '환율이 오를 것으로 예측됩니다.'
-    elif(label == 'increase' and confidence < trust):
-        indicate = '몰?루'
-        reason = '환율이 오를 것으로 예측되나 정확도가' + str(trust) + '% 미만입니다.'
-    else:
+        reason  = '환율이 오를 것으로 예측됩니다.'
+
+        if(confidence < trust):
+            indicate = '몰?루'
+            reason = '환율이 오를 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+
+        print(round(prediction[0,0]*100));
+    elif(prediction[0,1] > prediction[0,0] or prediction[0,2]):
+        confidence = round(prediction[0,1]*100)
+
         indicate = '하락'
-        reason = '환율이 하락 할 것으로 예측됩니다..'
+        reason = '환율이 하락 할 것으로 예측됩니다. 주의하세요!'
+
+        if(confidence < trust):
+            indicate = '몰?루'
+            reason = '환율이 오를 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+
+    else:
+        confidence = round(prediction[0,2]*100)
+
+        indicate = '유지'
+        reason = '환율이 지금 추세를 유지할 것으로 보입니다.'
+
+        if(confidence < trust):
+            indicate = '몰?루'
+            reason = '환율이 하락 할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
 
     indicateResult[0] = indicate
-    indicateResult[1] = str(round(confidence, 2)) + '%'
+    indicateResult[1] = str(confidence) + '%'
     indicateResult[2] = reason
-
-    # console check
-    # print(indicateResult)
-
-    return indicateResult
     
+    return indicateResult
+
+'''
+#console
+_ai_process(100);'''
