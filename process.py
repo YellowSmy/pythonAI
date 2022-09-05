@@ -108,6 +108,7 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
 
     ##save
     plt.savefig('./static/img/result/Yield.png');
+    plt.savefig('./static/img/result/Yield.jpg'); #for tensor
 
     #Yield 1st indicate part
     #Yield가 설정 입력 미만이면 ai 판단결과와 상관 없이 양산 불가 판정
