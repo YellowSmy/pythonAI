@@ -1,7 +1,7 @@
 from mlforkids import MLforKidsImageProject
 
 # treat this key like a password and keep it secret!
-key = "3e7871f0-09a8-11ed-a0b4-7b73eb924b025c485045-7cbe-4e1d-9476-dd2a6b91d346"
+key = "501df280-2c27-11ed-97fe-07e5aeb69d43c7de2caa-e94e-4c28-bfe4-af5b2a583a9c"
 moveResult = ['A', 'B', 'C'];
 velocityResult = ['A', 'B', 'C'];
 
@@ -26,9 +26,12 @@ def _ai_process(trust):
     if(label == "increase" and confidence >= trust):
         indicate = '상승'
         reason = '적기가 상승할 것으로 예측됩니다.'
-    elif(label == 'increase' and confidence < trust):
-        indicate = '(주의)상승'
-        reason = '적기가 상승할 것으로 예측되나 정확도가' + str(trust) + '% 미만입니다.'      
+    elif(label == 'constant' and confidence >= trust):
+        indicate = '유지'
+        reason = '적기가 비행궤도를 유지할 것으로 보입니다.'
+    elif(confidence < trust):
+        indicate = '몰?루'
+        reason = '정확도가' + str(trust) + '% 미만입니다. AI 신뢰 한계를 낮추거나 데이터를 추가하세요.'      
     else:
         indicate = '하락'
         reason = '적기가 하강할 것으로 예측됨..'
@@ -46,12 +49,15 @@ def _ai_process(trust):
     if(Vlabel == "increase" and Vconfidence >= trust):
         indicate = '가속'
         reason = '적기가 이동 방향으로 가속할 것으로 예상됩니다.'
-    elif(Vlabel == 'increase' and Vconfidence < trust):
-        indicate = '(주의)가속'
-        reason = '적기가 가속할 것으로 예측되나 정확도가' + str(trust) + '% 미만입니다.'      
+    elif(label == 'constant' and confidence >= trust):
+        indicate = '유지'
+        reason = '적기가 속도를 유지할 것으로 보입니다.'
+    elif(confidence < trust):
+        indicate = '몰?루'
+        reason = '정확도가' + str(trust) + '% 미만입니다. AI 신뢰 한계를 낮추거나 데이터를 추가하세요.'       
     else:
         indicate = '감속'
-        reason = '적기가 감속 할것으로 예측됨..'
+        reason = '적기가 감속 할것으로 예측됨.'
 
     velocityResult[0] = indicate
     velocityResult[1] = str(round(confidence, 2)) + '%'
