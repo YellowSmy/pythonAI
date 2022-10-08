@@ -38,7 +38,7 @@ def file_process():
         ##processing part
         #1st indicate: 수율 너무 낮은 wafer 과반수 이상 시 fail process <- process.py
         if(result == -1):
-            result = '양산 실패'; reason = '공정 수율이 수율 한계보다 낮습니다';
+            result = '양산 불가'; reason = '공정 수율이 수율 한계보다 낮습니다';
             return render_template('complete.html', image_file = 'img/result/PF.png', image_file2='img/result/Yield.png', result=result, reason=reason);
         else:
             #2nd indicate: ai processing으로 증감 판단 <- aiprocess.py
