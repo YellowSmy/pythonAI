@@ -4,6 +4,8 @@ import numpy as np
 
 indicateResult = ['A', 'B', 'C'];
 
+
+
 def _ai_process(trust):
     # Disable scientific notation for clarity
     np.set_printoptions(suppress=True)
@@ -35,36 +37,78 @@ def _ai_process(trust):
 
     # run the inference
     prediction = model.predict(data)
-    if(prediction[0,0] > prediction[0,1] or prediction[0,2]):
-        confidence = round(prediction[0,0]*100)
+
+    
+    ## AI PROCESS ##
+
+    if(prediction[0,0] > prediction[0,1]) :
+        if(prediction[0,0] > prediction[0,2]) :
+            #increase
+            confidence = round(prediction[0,0]*100)
+
+            indicate = '상승'
+            reason  = '환율이 오를 것으로 예측됩니다.'
+
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 상승할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+       
+        else :
+            #constant
+            confidence = round(prediction[0,2]*100)
+
+            indicate = '유지'
+            reason = '환율이 지금 추세를 유지할 것으로 보입니다.'
+
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 유지될 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+
+    elif(prediction[0,1] > prediction[0,2]) :
+        if(prediction[0,1] > prediction[0,0]) :
+            #decrease
+            confidence = round(prediction[0,1]*100)
+
+            indicate = '하락'
+            reason = '환율이 하락 할 것으로 예측됩니다. 주의하세요!'
+
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 하락할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
         
-        indicate = '상승'
-        reason  = '환율이 오를 것으로 예측됩니다.'
+        else :
+            #increase
+            confidence = round(prediction[0,0]*100)
 
-        if(confidence < trust):
-            indicate = '몰?루'
-            reason = '환율이 오를 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+            indicate = '상승'
+            reason  = '환율이 오를 것으로 예측됩니다.'
+            
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 상승할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+        
+    elif(prediction[0,0] < prediction[0,2]) :
+        if(prediction[0,2] > prediction[0,1]) :
+            #constant
+            confidence = round(prediction[0,2]*100)
 
-        print(round(prediction[0,0]*100));
-    elif(prediction[0,1] > prediction[0,0] or prediction[0,2]):
-        confidence = round(prediction[0,1]*100)
+            indicate = '유지'
+            reason = '환율이 지금 추세를 유지할 것으로 보입니다.'
 
-        indicate = '하락'
-        reason = '환율이 하락 할 것으로 예측됩니다. 주의하세요!'
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 유지될 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
 
-        if(confidence < trust):
-            indicate = '몰?루'
-            reason = '환율이 오를 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+        else :
+            #decrease
+            confidence = round(prediction[0,1]*100)
 
-    else:
-        confidence = round(prediction[0,2]*100)
+            indicate = '하락'
+            reason = '환율이 하락 할 것으로 예측됩니다. 주의하세요!'
 
-        indicate = '유지'
-        reason = '환율이 지금 추세를 유지할 것으로 보입니다.'
-
-        if(confidence < trust):
-            indicate = '몰?루'
-            reason = '환율이 하락 할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+            if(confidence < trust):
+                indicate = '몰?루'
+                reason = '환율이 하락할 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
 
     indicateResult[0] = indicate
     indicateResult[1] = str(confidence) + '%'
@@ -72,6 +116,9 @@ def _ai_process(trust):
     
     return indicateResult
 
+
 '''
 #console
-_ai_process(100);'''
+result = _ai_process(100);
+print(result)
+'''
