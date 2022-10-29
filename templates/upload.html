@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html style="text-align: center;">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/uploadstyle.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+    </head>
+
+    <body>
+        <form action="{{url_for('file_process')}}", method="post"
+            enctype="multipart/form-data" id="form">
+            <input type="text" name="drugName" placeholder="성분명을 입력해주세요.." required>
+
+            <li>
+                <input type="radio" name="shape" id="round" value="" checked>전체
+                <input type="radio" name="shape" id="round" value="원형">원형
+                <input type="radio" name="shape" id="round" value="타원">타원
+                <input type="radio" name="shape" id="round" value="반원">반원
+                <input type="radio" name="shape" id="round" value="삼각형">삼각
+                <input type="radio" name="shape" id="round" value="사각형">사각
+                <input type="radio" name="shape" id="round" value="마름모">마름모
+                <input type="radio" name="shape" id="round" value="장방">장방
+                <input type="radio" name="shape" id="round" value="오각형">오각
+                <input type="radio" name="shape" id="round" value="육각">육각
+                <input type="radio" name="shape" id="round" value="팔각">팔각
+                <input type="radio" name="shape" id="round" value="">기타
+            </li>
+
+            <div>
+                <input type="radio" name="drugForm" id="select(결정하기)" value=""> 전체
+                <input type="radio" name="drugForm" id="select(결정하기)" value="정제">정제
+                <input type="radio" name="drugForm" id="select(결정하기)" value="경질">경질캡슐
+                <input type="radio" name="drugForm" id="select(결정하기)" value="연질">연질캡슐
+  
+            </div>
+
+            <p>색상</p>
+            <select name="color" size="1" id="color"> 
+                <option value="">전체</option>
+                <option value="분홍">분홍</option>
+                <option value="주황">주황</option>
+                <option value="노랑">노랑</option>
+                <option value="흰색">흰색</option>
+                <option value="">기타</option>
+            </select>
+            <br> <br>
+            <input type="text" name="text" placeholder="약에 적힌 글씨를 입력해주세요!">
+            <br>
+            <input type="submit" id="submit">
+            <br>
+        </form>
+        <br>
+        <button onclick="modalOpen()">도움말</button>
+
+        <div id="load">
+            <img src="../static/img/UI/spinner.gif" alt="loading">
+            <p>tip: 1분 이상의 시간이 소모됩니다...</p>
+        </div>
+        <div id="help">
+            <div>
+                <h2>도움말</h2>
+                어쩌구 저쩌구
+                어쩌구 저쩌구
+                <br>
+                <button onclick="modalClose()">닫기</button>
+            </div>
+        </div>
+        <br>
+        
+        <script>
+            $(window).on('load', 
+                function() {
+                    $("#load").hide();
+                    $("#help").hide();
+            });
+            $('#form').submit(function loading() {     
+                    $('#load').show();
+            });
+
+            function modalOpen(){
+                $("#help").show();
+            }
+            function modalClose(){
+                $("#help").hide();
+            }
+        </script>
+    </body>
+    
+</html>
