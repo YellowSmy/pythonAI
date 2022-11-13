@@ -76,7 +76,13 @@ body {
 
 #help > div > button {
     position: relative;
-    top: 75%;
+    top: 15%
+}
+
+
+.explain {
+    line-height: 170%;
+    color: darkslategray;
 }
 
 input{

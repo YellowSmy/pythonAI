@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{url_for('static', filename='css/uploadstyle.css')}}">
+        <link rel="stylesheet" href="../static/css/uploadstyle.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
@@ -29,8 +30,19 @@
         <div id="help">
             <div>
                 <h2>도움말</h2>
-                어쩌구 저쩌구
-                어쩌구 저쩌구
+                <br>
+                <h4> - 입력 값 주의사항 - </h4>
+                <p class="explain"> 엑셀 파일의 경우, 첫 행과 첫 열이 비워진 상태로 웨이퍼맵을 만들어주세요!<br><br>
+                    칩 수율은 칩 하나 당 목표하는 수율(전기전도도, 상품성)을 말합니다. <br>
+                    수율 한계치는 공정 수율이 얼마나 낮아져도 되는지, 한계치를 입력하는 칸입니다. <br>
+                    AI 신뢰 한계치는 AI 정확도의 하한선을 입력하는 칸입니다.</p>
+                <br>
+                <br>
+                <br>
+                <h4> - 사용 시 주의사항 - </h4>
+                <p class="explain">재사용 시 계속 로딩화면이 뜬다면 새로고침 해주세요. <br>
+                파일 입력 시에도 파일 명이 뜨지 않는 경우에도 새로고침 해주세요.
+                </p>
                 <br>
                 <button onclick="modalClose()">닫기</button>
             </div>

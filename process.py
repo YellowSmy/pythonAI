@@ -32,11 +32,15 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
         processData = processData.dropna(); #NULL del
         processData = processData.reset_index(); # 0~n 인덱스 배열 바꾸기 (for 문 사용 위함)
 
+        print(processData)
+
         #P/F check
         passChip = 0; failChip = 0;
 
-        passChip = len(processData[processData.values >= chipLimit].value_counts());
+        passChip = len(processData.loc[processData[0]>= chipLimit]); #오류 있었음!! count 제대로 안되는거 fix
         failChip = waferSize - passChip;
+
+        print(passChip, failChip)
 
         #Result
         waferResult[sheetCount, 0] = passChip;
@@ -47,6 +51,8 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
 
         #yield caculate
         waferYield[sheetCount] = round(((passChip / waferSize) * 100), 2) # yield 공식, 소수점 셋쨰자리에서 반올림
+
+        print(waferYield);
 
     ### graph Part ###
 
@@ -99,7 +105,7 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
     plt.xlabel('테스트 횟수') #x 라벨
     plt.ylabel('Yield(단위: %)') #y 라벨
     plt.title("WaferYield") #그래프 이름
-    plt.ylim(1,100)
+    plt.ylim(1,150)
 
     #number labeling
     for countK in range(sheetSize):
@@ -123,3 +129,9 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
         failWafer = -1; #-1 : 양산 실패로 check
 
     return failWafer
+
+'''
+##consol
+print(_pandas_processing('wafer_test_sheet.xlsx', 60, 80));
+plt.plot();
+'''
