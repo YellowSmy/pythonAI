@@ -46,69 +46,50 @@ def _ai_process(trust):
             #increase
             confidence = round(prediction[0,0]*100)
 
-            indicate = '좌측'
-            reason  = '좌측으로 갈 것으로 예상됩니다.'
-
-            if(confidence < trust):
-                indicate = '좌측'
-                reason = '좌측으로 갈 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+            indicate = '왼쪽'
+            reason  = '제 생각엔 왼쪽으로 갈 거 같아요.'
        
         else :
             #constant
             confidence = round(prediction[0,2]*100)
 
-            indicate = 'I dont know'
-            reason = '알 수 없습니다.. 운에 맡기세요!'
+            indicate = '모르겠어요'
+            reason = '알 수 없어요.. 운에 맡겨봐요!'
 
-            if(confidence < trust):
-                indicate = 'I dont know'
-                reason = '알 수 없을 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
 
     elif(prediction[0,1] > prediction[0,2]) :
         if(prediction[0,1] > prediction[0,0]) :
             #decrease
             confidence = round(prediction[0,1]*100)
 
-            indicate = '우측'
-            reason = '우측으로 갈 것으로 예측됩니다.'
-
-            if(confidence < trust):
-                indicate = '우측'
-                reason = '우측으로 갈 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+            indicate = '오른쪽'
+            reason  = '제 생각엔 오른쪽으로 갈 거 같아요.'
         
         else :
             #increase
             confidence = round(prediction[0,0]*100)
 
-            indicate = '좌측'
-            reason  = '좌측으로 갈 것으로 예측됩니다.'
+            indicate = '왼쪽'
+            reason  = '제 생각엔 왼쪽으로 갈 거 같아요.'
             
-            if(confidence < trust):
-                indicate = '좌측'
-                reason = '좌측으로 갈 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
         
     elif(prediction[0,0] < prediction[0,2]) :
         if(prediction[0,2] > prediction[0,1]) :
             #constant
             confidence = round(prediction[0,2]*100)
 
-            indicate = 'I dont know'
-            reason = '알 수 없습니다.. 운에 맡기세요!'
+            indicate = '모르겠어요'
+            reason = '알 수 없어요.. 운에 맡겨봐요!'
 
-        if(confidence < trust):
-                indicate = 'I dont know'
-                reason = '알 수 없을 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
+
 
         else :
             #decrease
             confidence = round(prediction[0,1]*100)
 
-            indicate = '우측'
-            reason = '우측으로 갈 것으로 예측됩니다.'
+            indicate = '오른쪽'
+            reason  = '제 생각엔 오른쪽으로 갈 거 같아요.'
 
-            if(confidence < trust):
-                indicate = '우측'
-                reason = '우측으로 갈 것으로 예측되나 정확도가 ' + str(trust) + '% 미만입니다.'
 
     indicateResult[0] = indicate
     indicateResult[1] = str(confidence) + '%'

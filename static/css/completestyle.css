@@ -1,15 +1,16 @@
 /* 폰트 */
 @font-face {
-    font-family: 'tway';
-    src: url('../fonts/tway_fly.woff') format('woff');
+    font-family: 'cookie';
+    src: url('../fonts/CookieRunRegular.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
    
 html {
     position: relative;
-    font-family: 'tway', sans-serif;
-    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    font-family: 'cookie', sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),
+                url('../img/UI/background_kids.png') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -41,12 +42,17 @@ body {
 }
 
 #result {
-    font-size: 35px;
-    color: red;
+    font-size: 55px;
+    color: pink;
+    text-shadow: 1px 1px 1px #000;
 }
 
 p {
     font-size: 35px;
+    color: #000;
+    text-shadow: 1px 1px 2px whitesmoke;
 }
 
-/* 세로 정렬 */
+#margin {
+    margin-top: 600px;
+}

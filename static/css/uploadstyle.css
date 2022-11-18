@@ -1,15 +1,16 @@
 /* 폰트 */
 @font-face {
-    font-family: 'tway';
-    src: url('../fonts/tway_fly.woff') format('woff');
+    font-family: 'cookie';
+    src: url('../fonts/CookieRunRegular.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
 }
    
 html {
     position: relative;
-    font-family: 'tway', sans-serif;
-    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    font-family: 'cookie', sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.2),rgba(255, 255, 255, 0.2)),
+                url('../img/UI/background_kids.png') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -33,21 +34,24 @@ span {
 }
 
 [type=radio]{
-    /* content: url(../img/UI/images.jpg);; */
-    width: 100px;
+    width: 150px;
     height:100px;
+    margin-right: 30px;
+    margin-left: 30px;
+
 }
 
-[type=radio]:checked{
-    outline: 2px solid darkgrey;
-  }
-
 .checkL {
-    content: url(../img/UI/Left.jpg);
+    content: url(../img/UI/Left.png);
+    width: 100px;
+    height: 100px;
 }
 
 .checkR {
-    content: url(../img/UI/Right.jpg);
+    content: url(../img/UI/Right.png);
+    width: 100px;
+    height: 100px;
+
 }
 
 #load {
@@ -71,6 +75,7 @@ span {
 
 #load > p {
     position: relative;
+    font-size: 20px;
     top: 55%;
     z-index: 100;
 }
@@ -100,12 +105,12 @@ span {
 
 #help > div > button {
     position: relative;
-    top: 75%;
+    top: 60%;
 }
 
 input{
     margin: 0 auto;
-    font-family:'tway', sans-serif;  
+    font-family:'cookie', sans-serif;  
     width: 300px;
     height: 25px;
 }
@@ -115,17 +120,24 @@ input{
 }
 
 button {
-    font-family:'tway', sans-serif;
-    width: 70px;
-    height: 30px;
+    font-family:'cookie', sans-serif;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
 }
 
 #submit {
-    width: 70px;
-    height: 30px;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
 }
 
 button:hover, #submit:hover {
     background-color: gainsboro;
     
+}
+
+span {
+    font-size: 35px;
+    text-shadow: 3px 3px white;
 }

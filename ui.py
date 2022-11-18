@@ -27,7 +27,7 @@ def file_process():
         E = int(request.form['E']);
 
         input = [A, B, C, D, E];
-        trust = float(request.form['trust'])
+        trust = 50;
 
         ##processing part
         _pandas_processing(input);
