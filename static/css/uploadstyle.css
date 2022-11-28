@@ -19,7 +19,8 @@
 html {
     position: relative;
     font-family: 'tway', sans-serif;
-    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    background: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)),
+                url('../img/UI/background_common.png') no-repeat center center fixed ; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

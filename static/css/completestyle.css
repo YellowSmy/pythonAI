@@ -9,7 +9,8 @@
 html {
     position: relative;
     font-family: 'tway', sans-serif;
-    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    background: linear-gradient(rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.9)),
+                url('../img/UI/background_common.png') no-repeat center center fixed ; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -45,10 +46,16 @@ body {
 #result {
     font-size: 50px;
     color: red;
+    text-shadow: 2px 2px white;
 }
 
 p {
     font-size: 35px;
+    text-shadow: 2px 2px white;
+}
+
+iframe {
+    opacity: 1;
 }
 
 /* 세로 정렬 */
