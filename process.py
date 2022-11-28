@@ -47,7 +47,7 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
         waferResult[sheetCount, 1] = failChip;
 
         #try 횟수
-        testCount[sheetCount] = str(sheetCount+1) + "차"
+        testCount[sheetCount] = str(sheetCount+1) + "round"
 
         #yield caculate
         waferYield[sheetCount] = round(((passChip / waferSize) * 100), 2) # yield 공식, 소수점 셋쨰자리에서 반올림
@@ -64,6 +64,10 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
     font_name = fm.FontProperties(fname=font_location).get_name()
     matplotlib.rc('font', family=font_name)
 
+    matplotlib.rcParams['font.family'] ='Malgun Gothic'
+
+    matplotlib.rcParams['axes.unicode_minus'] =False
+
 
     ## P/F Graph
     plt.figure(1)
@@ -77,8 +81,8 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
     plt.xticks(PF_x+(barWidth/2), testCount);
 
     #design
-    plt.xlabel('테스트 횟수');
-    plt.ylabel('개수');
+    plt.xlabel('Test');
+    plt.ylabel('Count');
     plt.title('P/F Result');
     plt.legend(); #범례
 
@@ -102,8 +106,8 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
     plt.plot(testCount, waferYield, color='blue',linestyle='--',marker='o')
 
     #design
-    plt.xlabel('테스트 횟수') #x 라벨
-    plt.ylabel('Yield(단위: %)') #y 라벨
+    plt.xlabel('Test') #x 라벨
+    plt.ylabel('Yield(unit: %)') #y 라벨
     plt.title("WaferYield") #그래프 이름
     plt.ylim(1,150)
 
