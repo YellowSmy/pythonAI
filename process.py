@@ -47,7 +47,7 @@ def _pandas_processing(fileName, chipLimit, yieldLimit):
         waferResult[sheetCount, 1] = failChip;
 
         #try 횟수
-        testCount[sheetCount] = str(sheetCount+1) + "round"
+        testCount[sheetCount] = str(sheetCount+1)
 
         #yield caculate
         waferYield[sheetCount] = round(((passChip / waferSize) * 100), 2) # yield 공식, 소수점 셋쨰자리에서 반올림
