@@ -51,8 +51,8 @@ def _pandas_exchange_processing(selectRate, start_date, end_date, selectTime):
     plt.plot(refineData, color='red', label=refineData.name) 
 
     #design
-    plt.xlabel('연도') #x 라벨
-    plt.ylabel('환율') #y 라벨
+    plt.xlabel('Period') #x 라벨
+    plt.ylabel('Rate') #y 라벨
     plt.title("Exchange Rate") #그래프 이름
     plt.legend();
 
@@ -83,8 +83,9 @@ def _pandas_exchange_processing(selectRate, start_date, end_date, selectTime):
     plt.savefig('./static/img/result/exchange.png');
     plt.savefig('./static/img/result/exchange.jpg'); #for tensorflow
 
-""" 
+"""
 #console
 f=_pandas_exchange_processing('RUB', '2003-12-01', '2022-07-30', 'Close');
 plt.show();
-print(f)   """
+print(f)
+"""  

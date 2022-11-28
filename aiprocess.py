@@ -117,8 +117,8 @@ def _ai_process(trust):
     return indicateResult
 
 
-'''
+"""
 #console
 result = _ai_process(100);
 print(result)
-'''
+"""

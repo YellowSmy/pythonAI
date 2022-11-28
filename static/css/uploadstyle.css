@@ -10,7 +10,9 @@
 html {
     position: relative;
     font-family: 'tway', sans-serif;
-    /* background: url('/static/images/background.png') no-repeat center center fixed;   */
+    background: linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)),
+                url('../img/UI/background_common.png') no-repeat center center fixed ; 
+    background-size: auto;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,7 +20,7 @@ html {
     height: 100%;
     width: 100%;
     min-height: 100%;
-
+    
 }
 
 body {
@@ -72,16 +74,21 @@ h1 {
 #help > div {
     position: relative;
     display: inline-block;
-    top: 90px;
+    top: 100px;
     height: 70%;
-    width: 50%;
+    width: 45%;
     background-color: white;
     border-radius: 5%;
+    text-align: center;
+}
+
+#help > div > p {
+    color: gray;
 }
 
 #help > div > button {
     position: relative;
-    top: 75%;
+    top: 60%;
 }
 
 input{
